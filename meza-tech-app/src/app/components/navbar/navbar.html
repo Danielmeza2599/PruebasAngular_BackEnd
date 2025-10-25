@@ -1,0 +1,11 @@
+<nav class="container-fluid">
+  <ul>
+    <li><strong>MEZA Technology</strong></li>
+  </ul>
+  <ul *ngIf="user$ | async as user">
+    <li>Bienvenido, <strong>{{ user.username }}</strong></li>
+    <li>
+      <a href="#" role="button" (click)="logout()">Cerrar Sesión</a>
+    </li>
+  </ul>
+</nav>

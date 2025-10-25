@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+
+<main class="container-fluid">
+  
+  <div class="grid">
+    
+    <section>
+      <h2>Sección Principal (YouTube)</h2>
+      
+      <form (ngSubmit)="onSearchYouTube()">
+        <div class="grid">
+          <input 
+            type="search" 
+            placeholder="Buscar videos..."
+            [(ngModel)]="youtubeSearchTerm"
+            name="youtubeSearch">
+          <button type="submit" style="width: 150px;">Buscar</button>
+        </div>
+      </form>
+      
+      <div class="video-grid">
+        <app-video-item 
+          *ngFor="let video of searchResults"
+          [video]="video"
+          type="search"
+          (add)="onAddFavorite($event)">
+        </app-video-item>
+      </div>
+      <p *ngIf="searchResults.length === 0">No hay resultados.</p>
+
+    </section>
+
+    <section>
+      <h2>Mis Favoritos</h2>
+      
+      <input 
+        type="search" 
+        placeholder="Buscar en mis favoritos..."
+        [(ngModel)]="favoriteSearchTerm"
+        name="favSearch">
+      
+      <div class="video-grid">
+        <app-video-item 
+          *ngFor="let fav of (favorites$ | async)"
+          [video]="fav"
+          type="favorite"
+          (remove)="onRemoveFavorite($event)">
+        </app-video-item>
+      </div>
+      <p *ngIf="(favorites$ | async)?.length === 0">No tienes favoritos.</p>
+    </section>
+
+  </div>
+
+</main>
+
+<style>
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna por defecto */
+    gap: 1rem;
+  }
+
+  /* En pantallas más grandes, 2 columnas */
+  @media (min-width: 992px) {
+    .video-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

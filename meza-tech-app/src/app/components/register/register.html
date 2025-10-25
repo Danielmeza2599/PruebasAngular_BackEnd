@@ -1,0 +1,58 @@
+<main class="container" style="max-width: 600px; margin-top: 5vh;">
+  <article>
+    <h1 style="text-align: center;">Crear Cuenta</h1>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      
+      <div class="grid">
+        <label for="firstName">Nombre
+          <input type="text" id="firstName" formControlName="firstName">
+        </label>
+        <label for="lastName">Apellido
+          <input type="text" id="lastName" formControlName="lastName">
+        </label>
+      </div>
+      
+      <label for="username">Nombre de Usuario</label>
+      <input type="text" id="username" formControlName="username">
+      
+      <label for="email">Correo Electrónico</label>
+      <input type="email" id="email" formControlName="email">
+      
+      <fieldset formGroupName="passwordGroup">
+        <div class="grid">
+          <label for="password">Contraseña
+            <input type="password" id="password" formControlName="password">
+          </label>
+          <label for="confirmPassword">Confirmar Contraseña
+            <input type="password" id="confirmPassword" formControlName="confirmPassword">
+          </label>
+        </div>
+        <small *ngIf="registerForm.get('passwordGroup')?.errors?.['match'] && registerForm.get('passwordGroup.confirmPassword')?.dirty" 
+               style="color: var(--pico-color-red-500);">
+          Las contraseñas no coinciden.
+        </small>
+      </fieldset>
+
+      <ngx-captcha-2 
+        #captchaElem
+        [siteKey]="recaptchaSiteKey"
+        formControlName="recaptchaToken">
+      </ngx-captcha-2>
+      <br>
+      
+      <small *ngIf="errorMessage" style="color: var(--pico-color-red-500);">
+        {{ errorMessage }}
+      </small>
+      <small *ngIf="successMessage" style="color: var(--pico-color-green-500);">
+        {{ successMessage }}
+      </small>
+      
+      <button type="submit" [disabled]="registerForm.invalid">Crear Cuenta</button>
+    </form>
+    
+    <footer>
+      ¿Ya tienes cuenta? <a [routerLink]="['/login']">Inicia Sesión</a>
+    </footer>
+  </article>
+</main>
