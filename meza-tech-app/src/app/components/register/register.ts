@@ -1,9 +1,11 @@
 // src/app/components/register/register.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { AuthService } from '../../services/auth';
+import { environment } from '../../../environments/environment';
 
 // Validador customizado
 function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
@@ -20,8 +22,10 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, NgxCaptchaModule],
+  templateUrl: './register.html',
+  styleUrls: ['./register.scss']
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;

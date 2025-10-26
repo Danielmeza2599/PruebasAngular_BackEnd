@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { AppRoutingModule } from './app-routing-module';
-import { AppComponent } from './app';
+import { App } from './app';
 
 // Componentes
 import { LoginComponent } from './components/login/login';
@@ -19,17 +19,17 @@ import { VideoItemComponent } from './components/video-item/video-item';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { AuthGuard } from './guards/auth-guard';
 import { LoginGuard } from './guards/login-guard';
-import { Environment } from './environments/environment/environment';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    App,
+    // Import standalone components
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
     NavbarComponent,
     VideoItemComponent,
-    Environment
   ],
   imports: [
     BrowserModule,
@@ -49,6 +49,6 @@ import { Environment } from './environments/environment/environment';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [App]
 })
 export class AppModule { }

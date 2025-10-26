@@ -1,10 +1,13 @@
 // src/app/components/video-item/video-item.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-video-item',
-  templateUrl: './video-item.component.html',
-  styleUrls: ['./video-item.component.css']
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './video-item.html',
+  styleUrls: ['./video-item.scss']
 })
 export class VideoItemComponent {
   // Recibe el objeto del video

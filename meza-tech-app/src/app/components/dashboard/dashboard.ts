@@ -1,12 +1,18 @@
 // src/app/components/dashboard/dashboard.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ApiService } from '../../services/api';
 import { Observable } from 'rxjs';
+import { NavbarComponent } from '../navbar/navbar';
+import { VideoItemComponent } from '../video-item/video-item';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  standalone: true,
+  imports: [CommonModule, FormsModule, NavbarComponent, VideoItemComponent],
+  templateUrl: './dashboard.html',
+  styleUrls: ['./dashboard.scss']
 })
 export class DashboardComponent implements OnInit {
   // Observable de favoritos

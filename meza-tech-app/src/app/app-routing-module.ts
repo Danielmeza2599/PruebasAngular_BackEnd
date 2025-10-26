@@ -2,12 +2,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login';
+import { RegisterComponent } from './components/register/register';
+import { DashboardComponent } from './components/dashboard/dashboard';
 
-import { AuthGuard } from './guards/auth.guard';
-import { LoginGuard } from './guards/login.guard';
+import { AuthGuard } from './guards/auth-guard';
+import { LoginGuard } from './guards/login-guard';
 
 const routes: Routes = [
   // Si ya estás logueado, no puedes ver el login/registro
